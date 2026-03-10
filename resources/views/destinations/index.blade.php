@@ -42,24 +42,35 @@
 .dest-sidebar .card {
     border: none; border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm); margin-bottom: 20px;
+    overflow: hidden;
 }
 .dest-sidebar .card-header {
     background: none; border-bottom: 1px solid var(--gray-100);
     font-family: var(--font-display); font-weight: 700;
     color: var(--navy); font-size: .95rem; padding: 16px 20px 12px;
 }
+.dest-sidebar .card-body { padding: 8px; }
 .cat-filter-btn {
     display: flex; align-items: center; justify-content: space-between;
     width: 100%; padding: 9px 20px; font-size: .875rem;
     color: var(--gray-600); background: none; border: none;
     transition: var(--transition); border-radius: var(--radius-sm);
-    cursor: pointer;
+    cursor: pointer; position: relative;
 }
 .cat-filter-btn:hover { background: var(--gray-100); color: var(--navy); }
-.cat-filter-btn.active { color: var(--teal); font-weight: 600; }
+.cat-filter-btn.active {
+    color: var(--teal); font-weight: 600;
+    background: rgba(13,124,120,.07);
+    border-left: 3px solid var(--teal);
+    padding-left: 17px;
+}
 .cat-filter-btn .count {
     background: var(--gray-100); color: var(--gray-400);
     font-size: 11px; padding: 2px 8px; border-radius: var(--radius-full);
+    transition: var(--transition);
+}
+.cat-filter-btn.active .count {
+    background: rgba(13,124,120,.15); color: var(--teal);
 }
 .sort-select {
     border: 1.5px solid var(--gray-200); border-radius: var(--radius-full);
@@ -74,7 +85,7 @@
     padding: 8px 14px; font-size: .875rem;
 }
 .pagination .page-item.active .page-link {
-    background: var(--teal); border-color: var(--teal);
+    background: var(--teal); border-color: var(--teal); color: white;
 }
 </style>
 @endsection
@@ -84,8 +95,7 @@
 <!-- Page Hero -->
 <div class="dest-hero">
     <div class="container dest-hero-content">
-        <p class="section-label" style="color: var(--sky); --teal: var(--sky);">
-            <span style="width:20px;height:2px;background:var(--sky);display:inline-block;border-radius:2px;vertical-align:middle;margin-right:8px;"></span>
+        <p class="section-label" style="color: var(--sky);">
             Explore the World
         </p>
         <h1>All Destinations</h1>

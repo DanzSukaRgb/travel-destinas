@@ -272,16 +272,15 @@
 
                 <div class="hero-badge">
                     <span class="hero-badge-dot"></span>
-                    Explore 500+ Destinations Worldwide
+                    {!! \App\Models\PageContent::get('home','hero_badge','Explore 500+ Destinations Worldwide') !!}
                 </div>
 
                 <h1 class="hero-title">
-                    Find Your Next<br>
-                    <em>Dream Destination</em>
+                    {!! \App\Models\PageContent::get('home','hero_title','Find Your Next<br><em>Dream Destination</em>') !!}
                 </h1>
 
                 <p class="hero-subtitle">
-                    Curated travel experiences for the modern explorer. Discover breathtaking places, plan unforgettable journeys, and turn wanderlust into reality.
+                    {!! \App\Models\PageContent::get('home','hero_subtitle','Curated travel experiences for the modern explorer.') !!}
                 </p>
 
                 <!-- Search Bar -->
@@ -330,12 +329,12 @@
         <!-- Header -->
         <div class="row align-items-end mb-5 reveal">
             <div class="col-md-7">
-                <div class="section-label">Popular Destinations</div>
-                <h2 class="section-title">Handpicked for<br>Your Next Adventure</h2>
+                <div class="section-label">{!! \App\Models\PageContent::get('home','dest_section_label','Popular Destinations') !!}</div>
+                <h2 class="section-title">{!! \App\Models\PageContent::get('home','dest_section_title','Handpicked for<br>Your Next Adventure') !!}</h2>
             </div>
             <div class="col-md-5 text-md-end mt-3 mt-md-0">
                 <p class="section-subtitle" style="max-width: 300px; margin-left: auto;">
-                    From sun-kissed beaches to towering mountain peaks — your perfect trip starts here.
+                    {!! \App\Models\PageContent::get('home','dest_section_subtitle','From sun-kissed beaches to towering mountain peaks — your perfect trip starts here.') !!}
                 </p>
             </div>
         </div>
@@ -375,8 +374,8 @@
 <section id="categories">
     <div class="container">
         <div class="text-center mb-5 reveal">
-            <div class="section-label mx-auto" style="justify-content: center;">Browse by Category</div>
-            <h2 class="section-title">What Kind of Traveler<br>Are You?</h2>
+            <div class="section-label mx-auto" style="justify-content: center;">{!! \App\Models\PageContent::get('home','cat_section_label','Browse by Category') !!}</div>
+            <h2 class="section-title">{!! \App\Models\PageContent::get('home','cat_section_title','What Kind of Traveler<br>Are You?') !!}</h2>
         </div>
         <div class="row g-3 justify-content-center">
             @foreach ($categories as $i => $cat)
@@ -401,17 +400,17 @@
 <section id="why-us">
     <div class="container">
         <div class="text-center mb-5 reveal">
-            <div class="section-label mx-auto" style="justify-content: center;">Why Roam</div>
-            <h2 class="section-title">Your Perfect Travel<br>Companion</h2>
+            <div class="section-label mx-auto" style="justify-content: center;">{!! \App\Models\PageContent::get('home','whyus_section_label','Why Roam') !!}</div>
+            <h2 class="section-title">{!! \App\Models\PageContent::get('home','whyus_section_title','Your Perfect Travel<br>Companion') !!}</h2>
         </div>
         <div class="row g-4">
             @php
-            $values = [
-                ['icon' => 'fa-map-marked-alt', 'title' => 'Curated Destinations',    'desc' => 'Every destination is handpicked and verified by our team of expert travelers. No generic lists — only the best.'],
-                ['icon' => 'fa-route',          'title' => 'Easy Trip Planning',       'desc' => 'Intuitive tools to plan your perfect itinerary in minutes. From flights to hidden gems, we\'ve got you covered.'],
-                ['icon' => 'fa-lightbulb',      'title' => 'Rich Travel Inspiration',  'desc' => 'Discover stunning photography, insider tips, and travel stories that spark your next adventure.'],
-                ['icon' => 'fa-shield-alt',     'title' => 'Trusted Recommendations',  'desc' => 'Backed by thousands of verified traveler reviews, you can explore with complete confidence.'],
-            ];
+            $values = \App\Models\PageContent::json('home', 'whyus_cards', [
+                ['icon' => 'fa-map-marked-alt', 'title' => 'Curated Destinations',   'desc' => 'Every destination is handpicked and verified by our team of expert travelers.'],
+                ['icon' => 'fa-route',          'title' => 'Easy Trip Planning',      'desc' => "Intuitive tools to plan your perfect itinerary. From flights to hidden gems, we've got you covered."],
+                ['icon' => 'fa-lightbulb',      'title' => 'Rich Travel Inspiration', 'desc' => 'Discover stunning photography, insider tips, and travel stories that spark your next adventure.'],
+                ['icon' => 'fa-shield-alt',     'title' => 'Trusted Recommendations', 'desc' => 'Backed by thousands of verified traveler reviews, you can explore with complete confidence.'],
+            ]);
             @endphp
             @foreach ($values as $i => $val)
             <div class="col-sm-6 col-lg-3 reveal" style="transition-delay: {{ $i * 0.1 }}s;">
@@ -482,8 +481,8 @@
     <div class="container">
         <div class="row align-items-end mb-5 reveal">
             <div class="col-md-7">
-                <div class="section-label">Travel Guide</div>
-                <h2 class="section-title">Stories & Tips for<br>Smart Travelers</h2>
+                <div class="section-label">{!! \App\Models\PageContent::get('home','guide_section_label','Travel Guide') !!}</div>
+                <h2 class="section-title">{!! \App\Models\PageContent::get('home','guide_section_title','Stories & Tips for<br>Smart Travelers') !!}</h2>
             </div>
             <div class="col-md-5 text-md-end mt-3 mt-md-0">
                 <a href="#" class="btn-outline-navy btn" style="font-size: .875rem;">
@@ -525,8 +524,8 @@
 <section id="testimonials">
     <div class="container">
         <div class="text-center mb-5 reveal">
-            <div class="section-label mx-auto" style="justify-content: center;">Travelers Love Roam</div>
-            <h2 class="section-title">Real Stories from<br>Real Explorers</h2>
+            <div class="section-label mx-auto" style="justify-content: center;">{!! \App\Models\PageContent::get('home','testi_section_label','Travelers Love Roam') !!}</div>
+            <h2 class="section-title">{!! \App\Models\PageContent::get('home','testi_section_title','Real Stories from<br>Real Explorers') !!}</h2>
         </div>
         <div class="row g-4">
             @foreach ($testimonials as $i => $t)
@@ -561,11 +560,11 @@
         <div class="row justify-content-center text-center">
             <div class="col-lg-7 reveal">
                 <div class="section-label mx-auto" style="justify-content: center; color: var(--sky);">
-                    Stay Inspired
+                    {!! \App\Models\PageContent::get('home','nl_section_label','Stay Inspired') !!}
                 </div>
-                <h2 class="nl-title mb-3">Never Miss a Hidden Gem</h2>
+                <h2 class="nl-title mb-3">{!! \App\Models\PageContent::get('home','nl_title','Never Miss a Hidden Gem') !!}</h2>
                 <p style="color: rgba(255,255,255,.55); font-size: 1rem; margin-bottom: 36px; line-height: 1.75;">
-                    Join 50,000+ travelers who get weekly destination guides, travel tips, and exclusive deals delivered straight to their inbox.
+                    {!! \App\Models\PageContent::get('home','nl_subtitle','Join 50,000+ travelers who get weekly destination guides, travel tips, and exclusive deals delivered straight to their inbox.') !!}
                 </p>
                 <form id="nlForm" class="d-flex gap-3 justify-content-center" style="max-width: 480px; margin: 0 auto;">
                     @csrf

@@ -34,6 +34,7 @@
             --gray-200:    #E8E8E4;
             --gray-400:    #ADADAA;
             --gray-600:    #6B6B68;
+            --gray-700:    #555553;
             --gray-800:    #3A3A38;
             --font-display: 'Playfair Display', Georgia, serif;
             --font-body:    'DM Sans', sans-serif;
@@ -46,6 +47,7 @@
             --shadow-sm:    0 2px 12px rgba(11,28,46,.06);
             --shadow-md:    0 8px 32px rgba(11,28,46,.10);
             --shadow-lg:    0 20px 60px rgba(11,28,46,.14);
+            --shadow-xl:    0 40px 100px rgba(11,28,46,.20);
         }
 
         /* ── Base ───────────────────────────────────────────────── */
@@ -68,7 +70,7 @@
         /* ── Navbar ─────────────────────────────────────────────── */
         #mainNavbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1050;
-            padding: 22px 0;
+            padding: 20px 0;
             transition: background .4s ease, padding .4s ease, box-shadow .4s ease;
         }
         #mainNavbar.scrolled {
@@ -95,41 +97,52 @@
         #mainNavbar .nav-link {
             color: rgba(255,255,255,.82) !important;
             font-size: .875rem; font-weight: 500;
-            padding: 8px 14px !important;
+            padding: 8px 12px !important;
             border-radius: var(--radius-full);
             transition: var(--transition);
         }
         #mainNavbar.scrolled .nav-link { color: var(--gray-600) !important; }
-        #mainNavbar .nav-link:hover {
-            background: rgba(255,255,255,.15);
+        #mainNavbar .nav-link:hover,
+        #mainNavbar .nav-link.nav-active {
+            background: rgba(255,255,255,.18);
             color: #fff !important;
         }
-        #mainNavbar.scrolled .nav-link:hover {
-            background: var(--gray-100);
-            color: var(--navy) !important;
+        #mainNavbar.scrolled .nav-link:hover,
+        #mainNavbar.scrolled .nav-link.nav-active {
+            background: var(--sky-pale);
+            color: var(--teal) !important;
+            font-weight: 600;
+        }
+        #mainNavbar .nav-link.nav-admin {
+            color: rgba(255,255,255,.9) !important;
+        }
+        #mainNavbar.scrolled .nav-link.nav-admin {
+            color: var(--coral) !important;
         }
         .btn-nav-search {
             width: 38px; height: 38px; border-radius: 50%;
             background: rgba(255,255,255,.15);
             color: white; font-size: 14px;
             display: inline-flex; align-items: center; justify-content: center;
-            transition: var(--transition); border: none;
+            transition: var(--transition); border: none; cursor: pointer;
         }
         #mainNavbar.scrolled .btn-nav-search { background: var(--gray-100); color: var(--navy); }
-        .btn-nav-search:hover { background: rgba(255,255,255,.25); color: white; }
-        #mainNavbar.scrolled .btn-nav-search:hover { background: var(--gray-200); color: var(--navy); }
+        .btn-nav-search:hover { background: rgba(255,255,255,.28); }
+        #mainNavbar.scrolled .btn-nav-search:hover { background: var(--gray-200); }
         .btn-nav-cta {
-            padding: 10px 22px; border-radius: var(--radius-full);
+            padding: 9px 20px; border-radius: var(--radius-full);
             font-size: .875rem; font-weight: 600;
             background: var(--coral); color: white;
             box-shadow: 0 4px 16px rgba(232,113,74,.35);
             transition: var(--transition); border: none; text-decoration: none;
+            display: inline-flex; align-items: center;
         }
         .btn-nav-cta:hover {
             background: var(--coral-dark); color: white;
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(232,113,74,.45);
         }
+        #mainNavbar.scrolled .btn-nav-cta { box-shadow: 0 4px 14px rgba(232,113,74,.3); }
         .navbar-toggler {
             border: none; padding: 6px;
             color: white; font-size: 20px;
@@ -137,11 +150,7 @@
         }
         .navbar-toggler:focus { box-shadow: none; outline: none; }
         #mainNavbar.scrolled .navbar-toggler { color: var(--navy); }
-
-        /* Mobile menu dropdown */
-        #navMenu.navbar-collapse {
-            background: transparent;
-        }
+        #navMenu.navbar-collapse { background: transparent; }
         #mainNavbar:not(.scrolled) #navMenu.show,
         #mainNavbar:not(.scrolled) #navMenu.collapsing {
             background: rgba(11,28,46,.97);
@@ -170,7 +179,7 @@
         .section-label::before {
             content: ''; display: block;
             width: 20px; height: 2px;
-            background: var(--teal); border-radius: 2px;
+            background: currentColor; border-radius: 2px;
         }
         .section-title {
             font-family: var(--font-display);
@@ -213,7 +222,8 @@
             border: 1.5px solid var(--gray-200);
             padding: 11px 26px; border-radius: var(--radius-full);
             font-weight: 500; font-size: .9rem;
-            transition: var(--transition);
+            transition: var(--transition); text-decoration: none;
+            display: inline-flex; align-items: center;
         }
         .btn-outline-navy:hover {
             border-color: var(--teal); color: var(--teal);
@@ -226,13 +236,8 @@
             overflow: hidden; box-shadow: var(--shadow-sm);
             transition: var(--transition); cursor: pointer; border: none;
         }
-        .dest-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-        .dest-card-img {
-            position: relative; height: 220px; overflow: hidden;
-        }
+        .dest-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .dest-card-img { position: relative; height: 220px; overflow: hidden; }
         .dest-card-img img {
             width: 100%; height: 100%; object-fit: cover;
             transition: transform .6s ease;
@@ -251,8 +256,7 @@
             border-radius: 50%; display: flex; align-items: center;
             justify-content: center; color: var(--gray-400);
             font-size: 14px; transition: var(--transition);
-            backdrop-filter: blur(8px); border: none;
-            cursor: pointer;
+            backdrop-filter: blur(8px); border: none; cursor: pointer;
         }
         .dest-card-save:hover, .dest-card-save.saved { color: var(--coral); }
         .dest-card-body { padding: 20px 22px 22px; }
@@ -302,18 +306,14 @@
             white-space: nowrap;
         }
         .filter-pill:hover, .filter-pill.active {
-            background: var(--navy); color: white;
-            border-color: var(--navy);
+            background: var(--navy); color: white; border-color: var(--navy);
         }
 
         /* ── Footer ──────────────────────────────────────────────── */
-        #siteFooter {
-            background: var(--navy); color: rgba(255,255,255,.7);
-        }
+        #siteFooter { background: var(--navy); color: rgba(255,255,255,.7); }
         #siteFooter .footer-brand {
             font-family: var(--font-display);
-            font-size: 1.4rem; font-weight: 700;
-            color: white;
+            font-size: 1.4rem; font-weight: 700; color: white;
         }
         #siteFooter h6 {
             color: white; font-weight: 600;
@@ -334,20 +334,13 @@
             margin-right: 8px; margin-bottom: 0;
             transition: var(--transition);
         }
-        #siteFooter .footer-social a:hover {
-            background: var(--teal); color: white;
-        }
+        #siteFooter .footer-social a:hover { background: var(--teal); color: white; }
         .footer-divider { border-color: rgba(255,255,255,.08); }
         .footer-bottom { font-size: .83rem; color: rgba(255,255,255,.35); }
 
         /* ── Reveal Animations ───────────────────────────────────── */
-        .reveal {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity .7s ease, transform .7s ease;
-        }
-        .reveal.visible {
-            opacity: 1; transform: translateY(0);
-        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
         .reveal-delay-1 { transition-delay: .1s; }
         .reveal-delay-2 { transition-delay: .2s; }
         .reveal-delay-3 { transition-delay: .3s; }
@@ -356,10 +349,7 @@
 
         /* ── Toast ───────────────────────────────────────────────── */
         .toast-container { z-index: 9999; }
-        .custom-toast {
-            border: none; border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg); min-width: 280px;
-        }
+        .custom-toast { border: none; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); min-width: 280px; }
 
         /* ── Loader ──────────────────────────────────────────────── */
         .spinner-roam {
@@ -371,154 +361,51 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* ── Alert Flashes ───────────────────────────────────────── */
+        .alert-roam {
+            border: none; border-radius: var(--radius-md);
+            padding: 14px 20px; font-size: .9rem;
+        }
+
         @yield('extra-css')
     </style>
     @yield('extra-head')
 </head>
 <body>
 
-<!-- ================================================================
-     NAVBAR
-================================================================ -->
-<nav id="mainNavbar" class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="{{ route('home') }}">
-            <span class="brand-icon"><i class="fas fa-compass"></i></span>
-            <span class="brand-text">Roam</span>
-        </a>
+{{-- Navbar --}}
+@include('partials.navbar')
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
+{{-- Search Modal --}}
+@include('partials.search-modal')
 
-        <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav mx-auto gap-1">
-                <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('destinations.index') }}">Destinations</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('destinations.index', ['sort' => 'popular']) }}">Popular Places</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Travel Guide</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-            </ul>
-            <div class="d-flex align-items-center gap-2">
-                <button class="btn-nav-search" data-bs-toggle="modal" data-bs-target="#searchModal" title="Search">
-                    <i class="fas fa-search"></i>
-                </button>
-                <a href="{{ route('destinations.index') }}" class="btn-nav-cta ms-1">
-                    <i class="fas fa-map-marked-alt me-1"></i> Explore Now
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<!-- ================================================================
-     SEARCH MODAL
-================================================================ -->
-<div class="modal fade" id="searchModal" tabindex="-1" aria-label="Search">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 rounded-4 p-3" style="box-shadow: var(--shadow-xl);">
-            <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title font-display" style="color: var(--navy);">
-                    <i class="fas fa-search me-2" style="color: var(--teal);"></i>Search Destinations
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="position-relative">
-                    <input type="text" id="modalSearch" class="form-control form-control-lg rounded-pill ps-4"
-                        placeholder="Try 'Bali', 'Beach', 'Japan'..."
-                        autocomplete="off"
-                        style="border: 1.5px solid var(--gray-200); font-size: .95rem; padding-right: 50px;">
-                    <span class="position-absolute top-50 translate-middle-y" style="right: 18px; color: var(--gray-400);">
-                        <i class="fas fa-search"></i>
-                    </span>
-                </div>
-                <div id="searchResults" class="mt-3"></div>
-            </div>
-        </div>
+{{-- Flash Messages --}}
+@if(session('success'))
+<div class="position-fixed top-0 start-50 translate-middle-x mt-5 pt-3" style="z-index: 1200; min-width: 320px;">
+    <div class="alert alert-roam bg-success text-white d-flex align-items-center gap-2 shadow-lg" role="alert">
+        <i class="fas fa-check-circle"></i>
+        <span>{{ session('success') }}</span>
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="alert"></button>
     </div>
 </div>
+@endif
+@if(session('error'))
+<div class="position-fixed top-0 start-50 translate-middle-x mt-5 pt-3" style="z-index: 1200; min-width: 320px;">
+    <div class="alert alert-roam bg-danger text-white d-flex align-items-center gap-2 shadow-lg" role="alert">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>{{ session('error') }}</span>
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="alert"></button>
+    </div>
+</div>
+@endif
 
-<!-- ================================================================
-     PAGE CONTENT
-================================================================ -->
+{{-- Page Content --}}
 @yield('content')
 
-<!-- ================================================================
-     FOOTER
-================================================================ -->
-<footer id="siteFooter">
-    <div class="container pt-5 pb-4">
-        <div class="row gy-4">
-            <div class="col-lg-4">
-                <div class="d-flex align-items-center gap-2 mb-3">
-                    <span class="brand-icon" style="background: var(--teal);">
-                        <i class="fas fa-compass text-white"></i>
-                    </span>
-                    <span class="footer-brand">Roam</span>
-                </div>
-                <p style="color: rgba(255,255,255,.5); font-size: .9rem; line-height: 1.7; max-width: 280px;">
-                    Curated travel destinations for the modern explorer. Discover, plan, and experience the world's most breathtaking places.
-                </p>
-                <div class="footer-social mt-4">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="col-6 col-lg-2 offset-lg-1">
-                <h6>Explore</h6>
-                <a href="{{ route('destinations.index') }}">All Destinations</a>
-                <a href="{{ route('destinations.index', ['category' => 'Beach']) }}">Beach</a>
-                <a href="{{ route('destinations.index', ['category' => 'Mountain']) }}">Mountain</a>
-                <a href="{{ route('destinations.index', ['category' => 'City']) }}">City Breaks</a>
-                <a href="{{ route('destinations.index', ['category' => 'Adventure']) }}">Adventure</a>
-                <a href="{{ route('destinations.index', ['category' => 'Cultural']) }}">Cultural</a>
-            </div>
-            <div class="col-6 col-lg-2">
-                <h6>Company</h6>
-                <a href="#">About Us</a>
-                <a href="#">Travel Guide</a>
-                <a href="#">Blog</a>
-                <a href="#">Partnerships</a>
-                <a href="#">Careers</a>
-                <a href="#">Contact</a>
-            </div>
-            <div class="col-lg-3">
-                <h6>Stay Inspired</h6>
-                <p style="color: rgba(255,255,255,.5); font-size: .85rem; margin-bottom: 14px;">
-                    Get weekly travel inspiration delivered to your inbox.
-                </p>
-                <div class="d-flex gap-2">
-                    <input type="email" id="footerEmail" class="form-control rounded-pill" placeholder="your@email.com"
-                        style="background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); color: white; font-size: .85rem;">
-                    <button class="btn-teal px-3 flex-shrink-0" id="footerSubscribe" style="padding: 10px 16px;">
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-                <p style="color: rgba(255,255,255,.5); font-size: .75rem; margin-top: 10px;">
-                    <i class="fas fa-shield-alt me-1" style="color: var(--teal);"></i>No spam. Unsubscribe anytime.
-                </p>
-            </div>
-        </div>
+{{-- Footer --}}
+@include('partials.footer')
 
-        <hr class="footer-divider my-4">
-
-        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
-            <p class="footer-bottom mb-0">© {{ date('Y') }} Roam Travel Inc. All rights reserved.</p>
-            <div class="d-flex gap-3">
-                <a href="#" class="footer-bottom" style="margin-bottom: 0;">Privacy Policy</a>
-                <a href="#" class="footer-bottom" style="margin-bottom: 0;">Terms of Service</a>
-                <a href="#" class="footer-bottom" style="margin-bottom: 0;">Cookie Policy</a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- Toast Container -->
+{{-- Toast Container --}}
 <div class="toast-container position-fixed bottom-0 end-0 p-4">
     <div id="appToast" class="toast custom-toast align-items-center" role="alert">
         <div class="d-flex">
@@ -528,22 +415,16 @@
     </div>
 </div>
 
-<!-- Bootstrap 5 JS Bundle -->
+{{-- Bootstrap 5 JS Bundle --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery -->
+{{-- jQuery --}}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
-/* ============================================================
-   GLOBAL HELPERS
-============================================================ */
+/* ── Global Setup ──────────────────────────────────────── */
 const CSRF = $('meta[name="csrf-token"]').attr('content');
+$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': CSRF } });
 
-$.ajaxSetup({
-    headers: { 'X-CSRF-TOKEN': CSRF }
-});
-
-// ── Toast Helper ──────────────────────────────────────────
 function showToast(msg, type = 'success') {
     const toast = document.getElementById('appToast');
     const body  = document.getElementById('toastMsg');
@@ -553,79 +434,55 @@ function showToast(msg, type = 'success') {
     new bootstrap.Toast(toast, { delay: 3500 }).show();
 }
 
-/* ============================================================
-   NAVBAR SCROLL BEHAVIOR
-============================================================ */
+/* ── Navbar Scroll ─────────────────────────────────────── */
 $(window).on('scroll', function () {
-    const $nav = $('#mainNavbar');
-    if ($(this).scrollTop() > 50) {
-        $nav.addClass('scrolled');
-    } else {
-        $nav.removeClass('scrolled');
-    }
-});
+    $('#mainNavbar').toggleClass('scrolled', $(this).scrollTop() > 50);
+}).trigger('scroll');
 
-/* ============================================================
-   LIVE SEARCH (AJAX)
-============================================================ */
+/* ── Live Search (AJAX) ────────────────────────────────── */
 let searchTimer;
 $('#modalSearch').on('input', function () {
     const q = $(this).val().trim();
     clearTimeout(searchTimer);
-
-    if (q.length < 2) {
-        $('#searchResults').html('');
-        return;
-    }
+    if (q.length < 2) { $('#searchResults').html(''); return; }
 
     searchTimer = setTimeout(function () {
-        $('#searchResults').html(
-            '<div class="text-center py-3"><div class="spinner-roam mx-auto"></div></div>'
-        );
-
+        $('#searchResults').html('<div class="text-center py-3"><div class="spinner-roam mx-auto"></div></div>');
         $.get('{{ route("api.destinations.search") }}', { q })
             .done(function (res) {
-                if (!res.results || res.results.length === 0) {
-                    $('#searchResults').html(
-                        '<p class="text-muted text-center py-3 small">No destinations found for "<strong>' + q + '</strong>"</p>'
-                    );
+                if (!res.results || !res.results.length) {
+                    $('#searchResults').html('<p class="text-muted text-center py-3 small">No results for "<strong>' + q + '</strong>"</p>');
                     return;
                 }
                 let html = '<div class="list-group list-group-flush">';
-                res.results.forEach(function (d) {
-                    html += `
-                        <a href="${d.url}" class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3 px-2 border-0" style="border-radius: var(--radius-md);" data-bs-dismiss="modal">
-                            <img src="${d.image}" alt="${d.name}" style="width:52px;height:52px;object-fit:cover;border-radius:10px;flex-shrink:0;">
-                            <div class="flex-grow-1 min-w-0">
-                                <div class="fw-semibold" style="color: var(--navy); font-size:.95rem;">${d.name}</div>
-                                <div class="small" style="color: var(--gray-400);">${d.location} · ${d.category}</div>
-                            </div>
-                            <div class="small fw-semibold" style="color: var(--teal); flex-shrink:0;">
-                                <i class="fas fa-star me-1" style="color: #FBBF24;"></i>${d.rating}
-                            </div>
-                        </a>`;
+                res.results.forEach(d => {
+                    html += `<a href="${d.url}" class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3 px-2 border-0 rounded-3" data-bs-dismiss="modal">
+                        <img src="${d.image}" alt="${d.name}" style="width:52px;height:52px;object-fit:cover;border-radius:10px;flex-shrink:0;">
+                        <div class="flex-grow-1">
+                            <div class="fw-semibold" style="color:var(--navy)">${d.name}</div>
+                            <div class="small text-muted">${d.location} · ${d.category}</div>
+                        </div>
+                        <span class="small fw-semibold" style="color:var(--teal)"><i class="fas fa-star me-1" style="color:#FBBF24"></i>${d.rating}</span>
+                    </a>`;
                 });
-                html += '</div>';
-                $('#searchResults').html(html);
+                $('#searchResults').html(html + '</div>');
             })
-            .fail(function () {
-                $('#searchResults').html(
-                    '<p class="text-danger text-center small py-2">Search failed. Please try again.</p>'
-                );
-            });
+            .fail(() => $('#searchResults').html('<p class="text-danger text-center small py-2">Search failed.</p>'));
     }, 350);
 });
 
-/* ============================================================
-   SAVE / UNSAVE DESTINATION (AJAX)
-============================================================ */
+/* Quick pills in search modal */
+$(document).on('click', '.search-quick-pill', function () {
+    const term = $(this).data('term');
+    $('#modalSearch').val(term).trigger('input');
+});
+
+/* ── Save / Unsave Destination ─────────────────────────── */
 $(document).on('click', '.dest-card-save', function (e) {
     e.preventDefault(); e.stopPropagation();
-    const $btn = $(this);
-    const id   = $btn.data('id');
-
+    const $btn = $(this), id = $btn.data('id');
     $.post(`/api/destinations/${id}/save`)
-        .done(function (res) {
+        .done(res => {
             if (res.action === 'saved') {
                 $btn.addClass('saved').html('<i class="fas fa-heart"></i>');
                 showToast('✈️ Saved to your wishlist!', 'success');
@@ -636,39 +493,20 @@ $(document).on('click', '.dest-card-save', function (e) {
         });
 });
 
-/* ============================================================
-   FOOTER NEWSLETTER SUBSCRIBE (AJAX)
-============================================================ */
+/* ── Footer Newsletter ─────────────────────────────────── */
 $('#footerSubscribe').on('click', function () {
     const email = $('#footerEmail').val().trim();
     if (!email) return;
-
     $.post('{{ route("newsletter.subscribe") }}', { email })
-        .done(function (res) {
-            showToast(res.message, res.success ? 'success' : 'danger');
-            if (res.success) $('#footerEmail').val('');
-        })
-        .fail(function (xhr) {
-            const msg = xhr.responseJSON?.message || 'Something went wrong.';
-            showToast(msg, 'danger');
-        });
+        .done(res => { showToast(res.message, res.success ? 'success' : 'danger'); if (res.success) $('#footerEmail').val(''); })
+        .fail(xhr => showToast(xhr.responseJSON?.message || 'Something went wrong.', 'danger'));
 });
 
-/* ============================================================
-   SCROLL REVEAL
-============================================================ */
-const observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
-    });
+/* ── Scroll Reveal ─────────────────────────────────────── */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach(function (el) {
-    observer.observe(el);
-});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 @yield('extra-js')

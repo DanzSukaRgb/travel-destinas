@@ -22,10 +22,10 @@
     position: absolute; inset: 0;
     background: linear-gradient(
         to top,
-        rgba(11,28,46,.92) 0%,
-        rgba(11,28,46,.50) 40%,
-        rgba(11,28,46,.20) 70%,
-        rgba(11,28,46,.12) 100%
+        rgba(11,28,46,.95) 0%,
+        rgba(11,28,46,.60) 35%,
+        rgba(11,28,46,.25) 65%,
+        rgba(11,28,46,.10) 100%
     );
 }
 .detail-hero-content {
@@ -67,12 +67,12 @@
 }
 .info-row {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 0; border-bottom: 1px solid var(--gray-100);
-    font-size: .875rem;
+    padding: 11px 0; border-bottom: 1px solid var(--gray-100);
+    font-size: .875rem; gap: 10px;
 }
 .info-row:last-child { border: none; padding-bottom: 0; }
-.info-row .label { color: var(--gray-400); }
-.info-row .value { color: var(--navy); font-weight: 500; text-align: right; }
+.info-row .label { color: var(--gray-500, #888884); display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.info-row .value { color: var(--navy); font-weight: 600; text-align: right; font-size: .85rem; }
 
 /* Gallery */
 .gallery-grid {
@@ -102,19 +102,27 @@
 }
 .highlight-item:last-child { border: none; }
 .highlight-icon {
-    width: 30px; height: 30px; border-radius: 8px;
-    background: var(--sky-pale); color: var(--teal);
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--sky-pale) 0%, rgba(13,124,120,.12) 100%);
+    color: var(--teal);
     display: flex; align-items: center; justify-content: center;
     font-size: 12px; flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(13,124,120,.12);
 }
 .activity-pill {
     display: inline-flex; align-items: center; gap: 6px;
     background: var(--gray-100); color: var(--navy);
-    padding: 7px 14px; border-radius: var(--radius-full);
+    padding: 7px 16px; border-radius: var(--radius-full);
     font-size: .82rem; font-weight: 500; margin: 4px;
-    transition: var(--transition);
+    transition: var(--transition); cursor: default;
+    border: 1.5px solid transparent;
 }
-.activity-pill:hover { background: var(--teal); color: white; }
+.activity-pill:hover {
+    background: var(--teal); color: white;
+    border-color: var(--teal);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13,124,120,.25);
+}
 
 /* Map placeholder */
 .map-placeholder {

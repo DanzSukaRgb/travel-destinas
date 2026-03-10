@@ -18,11 +18,28 @@ class DatabaseSeeder extends Seeder
     {
         Destination::query()->exists() || $this->call(DestinationSeeder::class);
 
+        // Seed page CMS content (only if table is empty)
+        if (\App\Models\PageContent::count() === 0) {
+            $this->call(PageContentSeeder::class);
+        }
+
+        // Regular test user
         User::firstOrCreate(
             ['email' => 'test@example.com'],
             [
-                'name' => 'Test User',
-                'password' => 'password',
+                'name'     => 'Test User',
+                'is_admin' => false,
+                'password' => bcrypt('password'),
+            ]
+        );
+
+        // Admin user  →  login: admin@roam.com / password: admin123
+        User::firstOrCreate(
+            ['email' => 'admin@roam.com'],
+            [
+                'name'     => 'Roam Admin',
+                'is_admin' => true,
+                'password' => bcrypt('admin123'),
             ]
         );
     }
